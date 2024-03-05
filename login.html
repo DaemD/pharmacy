@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Management System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #f1f1f1;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+        }
+
+        .left-panel {
+            flex: 1;
+            background: url('pexels-artem-podrez-5726803.jpg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form {
+            max-width: 450px;
+    margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form h2 {
+            font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+        }
+
+        .login-form label {
+            display: block;
+    margin-bottom: 8px;
+    color: #555;
+        }
+
+        .login-form input {
+            width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+        }
+
+        .login-form button {
+            background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+        }
+        #invalidlogin{
+            font-size: 18px;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-panel">
+            <div class="login-form">
+                <h2>Login to Pharmacy Management System</h2>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" onclick="senddata()" id="loginButton" onmouseover="changeColorOnHover()" onmouseout="changeColorOnOut()">Login</button>
+<p id="invalidlogin"></p>
+
+            </div>
+        </div>
+        <div class="left-panel"></div>
+        
+    </div>
+ 
+</body>
+</html>
+
+<script>
+ const socket = new WebSocket('ws://localhost:8080'); // Replace with your server URL
+ socket.addEventListener('message', (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      if (data.loginstatus !== undefined) {
+  
+        if (data.loginstatus == "Validated") {
+        
+  
+  // Store data in localStorage
+  localStorage.setItem('key', 'yesallowed');
+  localStorage.setItem('email', data.email);
+  location.href = "http://127.0.0.1:5500/dashboard.html";
+
+
+  
+        } 
+        else if (data.loginstatus == "Incorrect") {
+          document.getElementById('invalidlogin').innerText = "Incorrect Login username or password";
+  
+        }
+      }
+    } catch (error) {
+      console.error('Error parsing WebSocket message:', error);
+    }
+  });
+
+
+  function changeColorOnHover() {
+  var button = document.getElementById("loginButton");
+  button.style.backgroundColor = "pink";
+}
+
+// Function to change button color back to initial on mouse out
+function changeColorOnOut() {
+  var button = document.getElementById("loginButton");
+  button.style.backgroundColor = ""; // This will revert to the default/initial color
+}
+  
+
+    function senddata()
+    {
+        var username=document.getElementById('username').value;
+        var password=document.getElementById('password').value;
+
+        fetch(`http://localhost:3000/senddata?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
+        .then(response => response.text())
+        .then(message => {
+          console.log(message);
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+
+    }
+  
+
+</script>

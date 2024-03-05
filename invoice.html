@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .form-section > div {
+      width: 48%;
+      margin-bottom: 15px;
+    }
+
+    .form-section select,
+    .form-section input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    .form-section button {
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    td {
+      background-color: #f9f9f9;
+    }
+
+    .action-icons {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .action-icons i {
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    .action-icons .add {
+      background-color: #2ecc71;
+      color: #fff;
+    }
+
+    .action-icons .delete {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .total-section {
+      margin-top: 20px;
+    }
+
+    .total-section input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    .total-section button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="form-section">
+    <div>
+      <label for="customer-name">Customer Name</label>
+      <select id="customer-name">
+        <!-- Add options here -->
+      </select>
+    </div>
+    <div>
+      <label for="address">Address</label>
+      <input type="text" id="address">
+    </div>
+    <div>
+      <label for="invoice-no">Invoice No</label>
+      <input type="text" id="invoice-no">
+    </div>
+    <div>
+      <label for="payment-type">Payment Type</label>
+      <input type="text" id="payment-type">
+    </div>
+    <div>
+      <label for="date">Date</label>
+      <input type="text" id="date">
+    </div>
+    <div>
+      <label for="contact-number">Contact Number</label>
+      <input type="text" id="contact-number">
+    </div>
+    <div>
+      <button>Add Customer</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Medicine Name</th>
+        <th>Supplier ID</th>
+        <th>Stock Amount</th>
+        <th>Expiry</th>
+        <th>Quantity</th>
+        <th>MRP</th>
+        <th>Discount%</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Add rows here -->
+    </tbody>
+  </table>
+
+  <div class="total-section">
+    <label for="total-amount">Total Amount</label>
+    <input type="text" id="total-amount" disabled>
+    <label for="total-discount">Total Discount</label>
+    <input type="text" id="total-discount" disabled>
+    <label for="net-total">Net Total</label>
+    <input type="text" id="net-total" disabled>
+    <label for="paid-amount">Paid Amount</label>
+    <input type="text" id="paid-amount">
+    <label for="change">Change</label>
+    <input type="text" id="change" disabled>
+    <button>Save</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+     body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cover-header {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    background: url('pexels-anna-shvets-3683067.jpg') center/cover;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+    z-index: 1;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form select {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+button{
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.action-column {
+    text-align: center;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.action-icons a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.action-icons a:hover {
+    color: #2980b9;
+}
+.cover-header {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            display: flex;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .content {
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            color: white; /* Ensure text is visible on the overlay */
+        }
+
+        .form-container {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #main {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        form {
+            flex: 1;
+            max-width: 50%;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .barcode-scanner {
+            max-width: 50%;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .barcode-scanner video {
+            width: 100%;
+        }
+
+        #barcode-result {
+            margin-top: 10px;
+        }
+        /* Add this CSS to your stylesheets or in a style tag in your HTML file */
+.edit-btn,
+.delete-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #2980b9;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+#errordetect{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+#datainserted{
+    color: rgb(148, 223, 37);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+    #searchBox {
+      margin-bottom: 20px;
+    }
+    #searchBox {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    /* Table styles */
+    #medicineTable {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #medicineTable th, #medicineTable td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    #medicineTable th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #updatetable{
+        display: none;
+    }
+    </style>
+    <title>Manage Medicines</title>
+</head>
+<body>
+
+    <div class="cover-header">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Manage Medicines</h1>
+        </div>
+    </div>
+    <div id="main">
+        <form id="addtable">
+            <!-- Add your form elements here -->
+            Medicine Name: <input type="text" id="medicineName" name="medicineName" required><br>
+            Manufacturer:
+            <select name="manufacturer" id="manufacturer" required>
+            
+            </select><br>
+            Stock Quantity: <input type="text" id="stockQuantity" name="stockQuantity" required><br>
+            Unit Price: <input type="text" id="unitPrice" name="unitPrice" required><br>
+            Expiry Date: <input type="date" id="expiryDate" name="expiryDate" required><br>
+            Supplier ID: <input type="text" id="supplierID" name="supplierID" required><br>
+            Medicine ID: <input type="text" id="medicineID" name="medicineID" required><br>
+            <button type="button" onclick="addMedicine()">Add Medicine</button>
+            <p id="errordetect"></p>
+            <p id="datainserted"></p>
+        </form>
+        <form id="updatetable">
+            <!-- Add your form elements here -->
+            Medicine Name: <input type="text" id="medicineName1" name="medicineName" required><br>
+            Manufacturer:
+            <select name="manufacturer" id="manufacturer1" required>
+               
+            </select><br>
+            Stock Quantity: <input type="text" id="stockQuantity1" name="stockQuantity" required><br>
+            Unit Price: <input type="text" id="unitPrice1" name="unitPrice" required><br>
+            Expiry Date: <input type="date" id="expiryDate1" name="expiryDate" required><br>
+            Medicine ID: <input type="text" id="medicineID1" name="medicineID" disabled><br>
+            <button type="button" onclick="updateMedicine()">Update Medicine</button>
+            <p id="errordetect1"></p>
+            <p id="datainserted1"></p>
+        </form>
+        <div class="barcode-scanner">
+            <video id="camera-feed" autoplay playsinline></video>
+            <div id="barcode-result">Pharmacy Management system: </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Search Box -->
+        <input type="text" id="searchBox" placeholder="Search by Medicine Name">
+    
+        <!-- Medicine Table -->
+        <table id="medicineTable">
+          <thead>
+            <tr>
+              <th>Medicine ID</th>
+              <th>Medicine Name</th>
+              <th>Manufacturer</th>
+              <th>Stock Quantity</th>
+              <th>Unit Price</th>
+              <th>Expiry Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="medicineid"></td>
+              <td class="medicinename"></td>
+              <td class="manufacturer"></td>
+              <td class="stockquantity"></td>
+              <td class="unitprice"></td>
+              <td class="expirydate"></td>
+              <td class="action"></td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+    
+      </div>
+    
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    document.getElementById('searchBox').addEventListener('input', function () {
+      var searchText = this.value.toLowerCase();
+      var rows = document.querySelectorAll('#medicineTable tbody tr');
+
+      rows.forEach(function (row) {
+        var cells = row.getElementsByTagName('td');
+        var isMatch = false;
+
+        for (var i = 1; i < cells.length - 1; i++) {
+          var cellText = cells[i].textContent.toLowerCase();
+          if (cellText.includes(searchText)) {
+            isMatch = true;
+            break;
+          }
+        }
+
+        row.style.display = isMatch ? '' : 'none';
+      });
+    });
+  </script>
+<!-- Display extracted data -->
+<h2 id="displayMedicineId"></h2>
+<h2 id="displayMedicineName"></h2>
+<h2 id="displayManufacturer"></h2>
+<h2 id="displayStockQuantity"></h2>
+<h2 id="displayUnitPrice"></h2>
+<h2 id="displayExpiryDate"></h2>
+
+</body>
+</html>
+<script>
+
+    Quagga.onDetected((result) => {
+                const code = result.codeResult.code;
+                const resultElement = document.getElementById('barcode-result');
+                resultElement.textContent = 'Detected barcode: ' + code;
+                const medicineid=document.getElementById('medicineID');
+                medicineid.value=code;
+              
+            });
+    
+    
+        Quagga.init({
+            inputStream: {
+                name: 'Live',
+                type: 'LiveStream',
+                target: document.getElementById('camera-feed'),
+                constraints: {
+                    facingMode: 'environment' // Use the rear camera (you can change this)
+                },
+            },
+            decoder: {
+                readers: ['code_128_reader', 'ean_reader', 'upc_reader'], // Configure barcode types you want to read
+            },
+        }, (err) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            Quagga.start();
+        });
+    
+        Quagga.onDetected((result) => {
+            const code = result.codeResult.code;
+            const resultElement = document.getElementById('medicineID');
+            resultElement.textContent = 'Detected barcode: ' + code;
+    
+            // Beep sound
+            var audio = new Audio('beep.mp3'); // You need to provide the path to a beep sound file
+            audio.play();
+        });
+    
+        // Check if the browser supports the getUserMedia API
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    // Get the video element and set the video stream as the source
+                    var videoElement = document.getElementById('camera-feed');
+                    videoElement.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error('Error accessing the camera: ' + error);
+                });
+        } else {
+            console.error('getUserMedia is not supported in this browser.');
+        }
+    </script>
+<script>
+
+   const socket = new WebSocket('ws://localhost:8080');
+   const tableBody = document.querySelector('#medicineTable tbody');
+
+   socket.addEventListener('message', (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      if (data.errorsinsertion !== undefined) {
+  document.getElementById('errordetect').innerText=data.errorsinsertion;
+       
+        
+
+
+  } 
+       
+      }
+    catch (error) {
+      console.error('Error parsing WebSocket message:', error);
+    }
+  });
+  socket.addEventListener('message', (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      if (data.successmessage !== undefined) {
+        location.reload();
+        document.getElementById('errordetect').innerText=" ";
+
+  document.getElementById('datainserted').innerText=data.successmessage;
+       
+        
+
+
+  } 
+       
+      }
+    catch (error) {
+      console.error('Error parsing WebSocket message:', error);
+    }
+  });
+
+  socket.addEventListener('message', (event) => {
+    try {
+        const data = JSON.parse(event.data);
+        if (data.medicineData !== undefined) {
+            updateTable(data.medicineData);
+        }
+        if (data.supplierNames !== undefined) {
+
+            updateManufacturerOptions(data.supplierNames); // Fix the function name here
+            updateManufacturerOptions1(data.supplierNames); // Fix the function name here
+
+        }
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+function updateManufacturerOptions(supplierNames) {
+    const manufacturerSelect = document.getElementById('manufacturer');
+    // Clear existing options
+    manufacturerSelect.innerHTML = '';
+
+    // Add default option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.text = 'Select Manufacturer';
+    manufacturerSelect.add(defaultOption);
+
+    // Add options for each supplier name
+    supplierNames.forEach((supplierName) => {
+        const option = document.createElement('option');
+        option.value = supplierName;
+        option.text = supplierName;
+        manufacturerSelect.add(option);
+    });
+}
+function updateManufacturerOptions1(supplierNames) {
+    const manufacturerSelect = document.getElementById('manufacturer1');
+    // Clear existing options
+    manufacturerSelect.innerHTML = '';
+
+    // Add default option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.text = 'Select Manufacturer';
+    manufacturerSelect.add(defaultOption);
+
+    // Add options for each supplier name
+    supplierNames.forEach((supplierName) => {
+        const option = document.createElement('option');
+        option.value = supplierName;
+        option.text = supplierName;
+        manufacturerSelect.add(option);
+    });
+}
+
+
+function updateTable(medicineData) {
+    // Clear existing rows in the table body
+  //  tableBody.innerHTML = '';
+
+    // If medicineData is empty, do not display action buttons
+    if (medicineData.length === 0) {
+        return;
+    }
+
+    // Iterate through each medicine in the data and append a new row to the table
+    medicineData.forEach((medicine) => {
+        const newRow = document.createElement('tr');
+
+        // Display data up to the 6th column
+        for (let i = 0; i < 6; i++) {
+            const newCell = document.createElement('td');
+            const propertyName = Object.keys(medicine)[i];
+            newCell.textContent = medicine[propertyName];
+
+            // Add a class to the cell based on the property name
+            newCell.classList.add(propertyName.toLowerCase());
+
+            newRow.appendChild(newCell);
+        }
+
+        // Create action buttons and add event listeners
+        const actionCell = document.createElement('td');
+
+        const editButton = createButton('Edit', 'edit-btn', () => {
+            // Pass the entire medicine object to the editRow function
+            editRow(newRow);
+        });
+
+        const deleteButton = createButton('Delete', 'delete-btn', () => {
+deleterow(newRow);
+            console.log('Delete button clicked', medicine);
+        });
+
+        actionCell.appendChild(editButton);
+        actionCell.appendChild(deleteButton);
+
+        // Append the action cell to the new row
+        newRow.appendChild(actionCell);
+
+        // Append the new row to the table body
+        tableBody.appendChild(newRow);
+    });
+}
+
+
+function createButton(text, className, clickHandler) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.className = className;
+    button.addEventListener('click', clickHandler);
+    return button;
+}
+function deleterow(newRow){
+    var medicineId = newRow.querySelector('.medicineid').textContent;
+    var medicinesid=encodeURIComponent(medicineId);
+  
+        const url = `http://localhost:3000/deletemedicine?medicineid=${medicinesid}`;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(message => {
+                console.log(message);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+}
+
+function editRow(row) {
+    // Implement your edit logic here
+document.getElementById('addtable').style.display='none';
+document.getElementById('updatetable').style.display='block'
+    // Extract data from the row
+    var medid = row.querySelector('.medicineid').textContent;
+    var medname = row.querySelector('.medicinename').textContent;
+    var manf = row.querySelector('.manufacturer').textContent;
+    var stockq = row.querySelector('.stockquantity').textContent;
+    var unitpr = row.querySelector('.unitprice').textContent;
+    var expir = row.querySelector('.expirydate').textContent;
+    var dateMatch = expir.match(/\d{4}-\d{2}-\d{2}/);
+
+     document.getElementById('medicineName1').value=medname;
+       document.getElementById('manufacturer1').value=manf;
+       document.getElementById('stockQuantity1').value=stockq;
+       document.getElementById('unitPrice1').value=unitpr;
+        document.getElementById('expiryDate1').value=dateMatch;
+       document.getElementById('medicineID1').value=medid;
+}
+
+ 
+
+   function addMedicine() {
+        const medicineName = encodeURIComponent(document.getElementById('medicineName').value);
+        const manufacturer = encodeURIComponent(document.getElementById('manufacturer').value);
+        const stockQuantity = encodeURIComponent(document.getElementById('stockQuantity').value);
+        const unitPrice = encodeURIComponent(document.getElementById('unitPrice').value);
+        const expiryDate = encodeURIComponent(document.getElementById('expiryDate').value);
+        const supplierID = encodeURIComponent(document.getElementById('supplierID').value);
+        const medicineID = encodeURIComponent(document.getElementById('medicineID').value);
+        const url = `http://localhost:3000/sendmedicine?medicineName=${medicineName}&manufacturer=${manufacturer}&stockQuantity=${stockQuantity}&unitPrice=${unitPrice}&expiryDate=${expiryDate}&supplierID=${supplierID}&medicineID=${medicineID}`;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(message => {
+                console.log(message);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+    function editbutton()
+{
+    document.getElementById('medicineName').value="Aaaaaaaaaaaaaaaaaaa";
+   var options= document.getElementById('medicineName').value;
+
+}
+
+function updateMedicine()
+{
+    const medicineName = encodeURIComponent(document.getElementById('medicineName1').value);
+        const manufacturer = encodeURIComponent(document.getElementById('manufacturer1').value);
+        const stockQuantity = encodeURIComponent(document.getElementById('stockQuantity1').value);
+        const unitPrice = encodeURIComponent(document.getElementById('unitPrice1').value);
+        const expiryDate = encodeURIComponent(document.getElementById('expiryDate1').value);
+        const medicineID = encodeURIComponent(document.getElementById('medicineID1').value);
+        const url = `http://localhost:3000/updatemedicine?medicineName=${medicineName}&manufacturer=${manufacturer}&stockQuantity=${stockQuantity}&unitPrice=${unitPrice}&expiryDate=${expiryDate}&medicineID=${medicineID}`;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(message => {
+                console.log(message);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+}
+    </script>

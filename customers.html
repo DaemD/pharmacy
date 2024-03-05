@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+     body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cover-header {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    background: url('pexels-energepiccom-2988232.jpg') center/cover;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+    z-index: 1;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form select {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+button{
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.action-column {
+    text-align: center;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.action-icons a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.action-icons a:hover {
+    color: #2980b9;
+}
+.cover-header {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            display: flex;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .content {
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            color: white; /* Ensure text is visible on the overlay */
+        }
+
+        .form-container {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #main {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        form {
+            flex: 1;
+            max-width: 50%;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .barcode-scanner {
+            max-width: 50%;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .barcode-scanner video {
+            width: 100%;
+        }
+
+        #barcode-result {
+            margin-top: 10px;
+        }
+        /* Add this CSS to your stylesheets or in a style tag in your HTML file */
+.edit-btn,
+.delete-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #2980b9;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+#errordetect{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+#datainserted{
+    color: rgb(148, 223, 37);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+    #searchBox {
+      margin-bottom: 20px;
+    }
+    #searchBox {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    /* Table styles */
+    #medicineTable {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #medicineTable th, #medicineTable td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    #medicineTable th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #updatetable{
+        display: none;
+    }
+    img{
+    max-height: 400px;
+}
+    </style>
+    <title>Manage Medicines</title>
+</head>
+<body>
+
+    <div class="cover-header">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Manage Customers</h1>
+        </div>
+    </div>
+    <div id="main">
+        <form id="addtable">
+            <!-- Add your form elements here -->
+          
+            First Name: <input type="text" id="firstname" name="firstname" required><br>
+            Last Name: <input type="text" id="lastname" name="lastname" required><br>
+            Contact Number: <input type="text" id="contactnumber" name="contactnumber" required><br>
+            Address: <input type="text" id="address" name="address" required><br>
+            <button type="button" onclick="addcustomer()">Add Customer</button>
+            <p id="errordetect"></p>
+            <p id="datainserted"></p>
+        </form>
+        <form id="updatetable">
+            <!-- Add your form elements here -->
+            Customer ID: <input type="text" id="customerid1" name="customerid" disabled><br>
+          
+            First Name: <input type="text" id="firstname1" name="firstname" required><br>
+            Last Name: <input type="text" id="lastname1" name="lastname" required><br>
+            Contact Number: <input type="text" id="contactnumber1" name="contactnumber" required><br>
+            Address: <input type="text" id="address1" name="address" required><br>
+            <button type="button" onclick="updatecustomer()">Update Customer</button>
+            <p id="errordetect1"></p>
+            <p id="datainserted1"></p>
+        </form>
+        <div class="barcode-scanner">
+            <img src="pexels-energepiccom-2988232.jpg" alt="">
+            <div id="barcode-result">Pharmacy Management system: </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Search Box -->
+        <input type="text" id="searchBox" placeholder="Search by Customer Name">
+    
+        <!-- Medicine Table -->
+        <table id="customertable">
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>FirstName</th>
+              <th>Last Name</th>
+              <th>Contact Number</th>
+              <th>Address</th>
+            <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="customerid"></td>
+              <td class="firstname"></td>
+              <td class="lastname"></td>
+              <td class="contactnumber"></td>
+              <td class="address"></td>
+              <td class="action"></td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+    
+      </div>
+    
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    document.getElementById('searchBox').addEventListener('input', function () {
+      var searchText = this.value.toLowerCase();
+      var rows = document.querySelectorAll('#customertable tbody tr');
+
+      rows.forEach(function (row) {
+        var cells = row.getElementsByTagName('td');
+        var isMatch = false;
+
+        for (var i = 1; i < cells.length - 1; i++) {
+          var cellText = cells[i].textContent.toLowerCase();
+          if (cellText.includes(searchText)) {
+            isMatch = true;
+            break;
+          }
+        }
+
+        row.style.display = isMatch ? '' : 'none';
+      });
+    });
+  </script>
+
+
+</body>
+</html>
+
+<script>
+
+   const socket = new WebSocket('ws://localhost:8080');
+   const tableBody = document.querySelector('#customertable tbody');
+
+   socket.addEventListener('message', (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      if (data.errorsinsertion !== undefined) {
+  document.getElementById('errordetect').innerText=data.errorsinsertion;
+       
+        
+
+
+  } 
+       
+      }
+    catch (error) {
+      console.error('Error parsing WebSocket message:', error);
+    }
+  });
+  socket.addEventListener('message', (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      if (data.successmessage !== undefined) {
+        location.reload();
+        document.getElementById('errordetect').innerText=" ";
+
+  document.getElementById('datainserted').innerText=data.successmessage;
+       
+
+  } 
+       
+      }
+    catch (error) {
+      console.error('Error parsing WebSocket message:', error);
+    }
+  });
+
+  socket.addEventListener('message', (event) => {
+    try {
+        const data = JSON.parse(event.data);
+        if (data.customerdata !== undefined) {
+            updateTable(data.customerdata);
+        }
+       
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+function updateTable(customerdata) {
+    // Clear existing rows in the table body
+  //  tableBody.innerHTML = '';
+
+    // If medicineData is empty, do not display action buttons
+    if (customerdata.length === 0) {
+        return;
+    }
+
+    // Iterate through each medicine in the data and append a new row to the table
+    customerdata.forEach((customer) => {
+        const newRow = document.createElement('tr');
+
+        // Display data up to the 6th column
+        for (let i = 0; i < 5; i++) {
+            const newCell = document.createElement('td');
+            const propertyName = Object.keys(customer)[i];
+            newCell.textContent = customer[propertyName];
+
+            // Add a class to the cell based on the property name
+            newCell.classList.add(propertyName.toLowerCase());
+
+            newRow.appendChild(newCell);
+        }
+
+        // Create action buttons and add event listeners
+        const actionCell = document.createElement('td');
+
+        const editButton = createButton('Edit', 'edit-btn', () => {
+            // Pass the entire medicine object to the editRow function
+            editcustomerrows(newRow);
+        });
+
+        const deleteButton = createButton('Delete', 'delete-btn', () => {
+            deletecustomers(newRow);
+            console.log('Delete button clicked', medicine);
+        });
+
+        actionCell.appendChild(editButton);
+        actionCell.appendChild(deleteButton);
+
+        // Append the action cell to the new row
+        newRow.appendChild(actionCell);
+
+        // Append the new row to the table body
+        tableBody.appendChild(newRow);
+    });
+}
+
+
+function createButton(text, className, clickHandler) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.className = className;
+    button.addEventListener('click', clickHandler);
+    return button;
+}
+function deletecustomers(rowdata){
+
+    var customerid = rowdata.querySelector('.customerid').textContent;
+    var cusid=encodeURIComponent(customerid);
+        const url = `http://localhost:3000/deletecustomer?customerid=${cusid}`;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(message => {
+                console.log(message);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+}
+
+function editcustomerrows(rowdata) {
+
+    
+document.getElementById('addtable').style.display='none';
+document.getElementById('updatetable').style.display='block'
+    // Extract data from the row
+    var customerid = rowdata.querySelector('.customerid').textContent;
+    var firstname = rowdata.querySelector('.firstname').textContent;
+    var lastname = rowdata.querySelector('.lastname').textContent;
+    var contactnumber = rowdata.querySelector('.contactnumber').textContent;
+    var address = rowdata.querySelector('.address').textContent;
+
+     document.getElementById('customerid1').value=customerid;
+       document.getElementById('firstname1').value=firstname;
+       document.getElementById('lastname1').value=lastname;
+       document.getElementById('contactnumber1').value=contactnumber;
+        document.getElementById('address1').value=address;
+}
+
+ 
+
+   function addcustomer() {
+        const firstname = encodeURIComponent(document.getElementById('firstname').value);
+        const lastname = encodeURIComponent(document.getElementById('lastname').value);
+        const contactnumber = encodeURIComponent(document.getElementById('contactnumber').value);
+        const address = encodeURIComponent(document.getElementById('address').value);
+        
+        const url = `http://localhost:3000/sendcustomer?firstname=${firstname}&lastname=${lastname}&contactnumber=${contactnumber}&address=${address}`;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(message => {
+                console.log(message);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+ 
+
+function updatecustomer()
+{
+    
+    const customerid = encodeURIComponent(document.getElementById('customerid1').value);
+        const firstname = encodeURIComponent(document.getElementById('firstname1').value);
+        const lastname = encodeURIComponent(document.getElementById('lastname1').value);
+        const contactnumber = encodeURIComponent(document.getElementById('contactnumber1').value);
+        const address = encodeURIComponent(document.getElementById('address1').value);
+        const url = `http://localhost:3000/updatecustomer?customerid=${customerid}&firstname=${firstname}&lastname=${lastname}&contactnumber=${contactnumber}&address=${address}`;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(message => {
+                console.log(message);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+}
+    </script>
